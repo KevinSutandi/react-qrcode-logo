@@ -60,7 +60,7 @@ export class QRCode extends React.Component<IProps, {}> {
         logoPaddingStyle: 'square'
     };
 
-    public download(fileType?: 'png' | 'jpg' | 'webp', fileName?: string) {
+    public download(fileType?: 'png' | 'jpg' | 'webp', fileName?: string, base64?: boolean) {
         if (this.canvasRef.current) {
             let mimeType;
 
@@ -75,16 +75,13 @@ export class QRCode extends React.Component<IProps, {}> {
             }
 
             const url = this.canvasRef.current.toDataURL(mimeType, 1.0);
+            if (base64) {
+                return url;
+            }
             const link = document.createElement('a');
             link.download = fileName ?? 'react-qrcode-logo';
             link.href = url;
             link.click();
-        }
-    }
-
-    public downloadAsBase64(fileType?: 'png' | 'jpg' | 'webp') {
-        if (this.canvasRef.current) {
-            return this.canvasRef.current.toDataURL(fileType ? `image/${fileType}` : undefined, 1.0);
         }
     }
 
