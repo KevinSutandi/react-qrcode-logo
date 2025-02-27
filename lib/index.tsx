@@ -82,6 +82,12 @@ export class QRCode extends React.Component<IProps, {}> {
         }
     }
 
+    public downloadAsBase64(fileType?: 'png' | 'jpg' | 'webp') {
+        if (this.canvasRef.current) {
+            return this.canvasRef.current.toDataURL(fileType ? `image/${fileType}` : undefined, 1.0);
+        }
+    }
+
     private utf16to8(str: string): string {
         let out: string = '', i: number, c: number;
         const len: number = str.length;
