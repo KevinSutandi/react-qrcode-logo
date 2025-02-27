@@ -37,7 +37,7 @@ var QRCode = /** @class */ (function (_super) {
         _this.canvasRef = React.createRef();
         return _this;
     }
-    QRCode.prototype.download = function (fileType, fileName) {
+    QRCode.prototype.download = function (fileType, fileName, base64) {
         if (this.canvasRef.current) {
             var mimeType = void 0;
             switch (fileType) {
@@ -53,6 +53,9 @@ var QRCode = /** @class */ (function (_super) {
                     break;
             }
             var url = this.canvasRef.current.toDataURL(mimeType, 1.0);
+            if (base64) {
+                return url;
+            }
             var link = document.createElement('a');
             link.download = fileName !== null && fileName !== void 0 ? fileName : 'react-qrcode-logo';
             link.href = url;

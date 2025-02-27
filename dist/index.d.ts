@@ -34,7 +34,7 @@ export interface IProps {
 export declare class QRCode extends React.Component<IProps, {}> {
     private canvasRef;
     static defaultProps: IProps;
-    download(fileType?: 'png' | 'jpg' | 'webp', fileName?: string): void;
+    download(fileType?: 'png' | 'jpg' | 'webp', fileName?: string, base64?: boolean): string;
     private utf16to8;
     /**
      * Draw a rounded square in the canvas
